@@ -27,9 +27,11 @@ export function ArticleContent({ content }: ArticleContentProps) {
   }, [content]);
 
   return (
-    <div 
-      className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 hover:prose-a:text-blue-700 prose-img:rounded-xl prose-pre:bg-gray-900 prose-pre:text-gray-100"
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
+   <div 
+  className="prose prose-lg max-w-none 
+    prose-headings:text-gray-950  /* darker headings */
+    prose-p:text-gray-900          /* darker body text */"
+  dangerouslySetInnerHTML={{ __html: content }}
+/>
   );
 }

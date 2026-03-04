@@ -1,26 +1,33 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme {
+  /* Brand - Refined slate with premium emerald */
+  --color-primary: #1e293b;        /* Slate 800 - charcoal */
+  --color-secondary: #10b981;      /* Emerald 500 - fresh */
+  --color-accent: #34d399;         /* Emerald 400 - vibrant */
+  
+  /* Light mode - Editorial white */
+  --color-background: #ffffff;     /* Pure white */
+  --color-surface: #ffffff;
+  --color-muted: #f8fafc;          /* Slate 50 */
+  
+  --color-text: #0f172a;           /* Slate 900 */
+  --color-text-muted: #94a3b8;     /* Slate 400 - lighter gray */
+  --color-text-inverse: #ffffff;
+  
+  --color-border: #f1f5f9;         /* Slate 100 - hairline */
+  --color-ring: #10b981;           /* Emerald 500 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+[data-theme="dark"] {
+  --color-background: #020617;     /* Slate 950 - near black */
+  --color-surface: #0f172a;        /* Slate 900 */
+  --color-muted: #1e293b;          /* Slate 800 */
+  
+  --color-text: #f8fafc;           /* Slate 50 */
+  --color-text-muted: #94a3b8;     /* Slate 400 */
+  --color-text-inverse: #0f172a;
+  
+  --color-border: #334155;         /* Slate 700 */
+  --color-ring: #34d399;           /* Emerald 400 */
 }
