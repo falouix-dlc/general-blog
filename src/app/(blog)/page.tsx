@@ -214,7 +214,7 @@ export default async function HomePage({
   ]);
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-background text-text">
       {/* Hero Section with Featured Article */}
       {featuredArticle && !categorySlug && !searchQuery && currentPage === 1 && (
         <HeroSection article={featuredArticle} />
@@ -224,10 +224,10 @@ export default async function HomePage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-text mb-4">
             {searchQuery ? `Search results for "${searchQuery}"` : 'Latest Articles'}
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-text-muted">
             {searchQuery
               ? `Found ${totalCount} article${totalCount !== 1 ? 's' : ''}`
               : 'Discover stories, thinking, and expertise from writers on any topic.'}
@@ -250,7 +250,7 @@ export default async function HomePage({
                 <ArticleCard 
                   key={article.id} 
                   article={article} 
-                  priority={index < 3} // Priority loading for first 3 images
+                  priority={index < 3}
                 />
               ))}
             </div>
@@ -279,9 +279,9 @@ export default async function HomePage({
 function EmptyState({ searchQuery, categorySlug }: { searchQuery?: string; categorySlug?: string }) {
   return (
     <div className="text-center py-16">
-      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
         <svg
-          className="w-8 h-8 text-gray-400"
+          className="w-8 h-8 text-text-muted"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -294,8 +294,8 @@ function EmptyState({ searchQuery, categorySlug }: { searchQuery?: string; categ
           />
         </svg>
       </div>
-      <h3 className="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
-      <p className="text-gray-500">
+      <h3 className="text-lg font-medium text-text mb-2">No articles found</h3>
+      <p className="text-text-muted">
         {searchQuery
           ? `No articles match your search "${searchQuery}". Try different keywords.`
           : categorySlug

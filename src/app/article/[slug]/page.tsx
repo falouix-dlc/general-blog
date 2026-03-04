@@ -9,6 +9,7 @@ import { RelatedArticles } from '@/components/blog/RelatedArticles';
 import { ShareButtons } from '@/components/blog/ShareButtons';
 import { ViewCounter } from '@/components/blog/ViewCounter';
 import { Comments } from '@/components/blog/Comments';
+import { Navbar } from '@/components/blog/Navbar';
 
 // Generate metadata for SEO
 export async function generateMetadata({ 
@@ -148,6 +149,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const relatedArticles = await getRelatedArticles(category?.id, article.id);
 
   return (
+    <>
+      <Navbar />
     <article className="min-h-screen bg-white">
       {/* Article Header */}
       <header className="bg-gray-50 border-b">
@@ -272,5 +275,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       )}
       <Comments articleId={article.id} />
     </article>
+  </>
   );
 }
