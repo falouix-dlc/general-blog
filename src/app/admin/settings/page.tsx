@@ -51,7 +51,7 @@ export default async function SettingsPage() {
         <div className="bg-white rounded-xl shadow-sm p-6 md:col-span-2">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">About</h2>
           <p className="text-gray-600">
-            General Blog v1.0 - Built with Next.js 15 and Supabase
+            General Blog v1.0 - Built with Next.js 16 and Supabase
           </p>
         </div>
       </div>
