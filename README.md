@@ -16,7 +16,7 @@ A modern blog built with Next.js 15, Tailwind CSS v4, and Supabase authenticatio
 
 | Technology | Purpose |
 |------------|---------|
-| Next.js 15 | React framework |
+| Next.js 16 | React framework |
 | Tailwind CSS v4 | Styling |
 | Supabase | Database & Authentication |
 | TypeScript | Type safety |
