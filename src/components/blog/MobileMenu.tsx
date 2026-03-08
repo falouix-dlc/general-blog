@@ -1,122 +1,191 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import Link from "next/link";
 
 interface MobileMenuProps {
   user: unknown;
 }
 
 export function MobileMenu({ user }: MobileMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  const closeMenu = () => setOpen(false);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
     };
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+
+    if (open) {
+      document.addEventListener("keydown", esc);
+      document.body.style.overflow = "hidden";
     }
+
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", esc);
+      document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [open]);
 
   return (
     <>
-      {/* Backdrop - below navbar */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
-          onClick={() => setIsOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Menu Container */}
-      <div className="md:hidden relative z-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-muted transition-colors"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <XIcon /> : <MenuIcon />}
-        </button>
-
-        {/* Dropdown Menu */}
-        <div 
-          className={`absolute top-full right-0 mt-2 w-64 bg-surface border border-border rounded-lg shadow-lg transform transition-all duration-200 ease-out ${
-            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
-          }`}
-        >
-          <nav className="p-2 space-y-1">
-            <MobileNavLink href="/" onClick={() => setIsOpen(false)}>Home</MobileNavLink>
-            <MobileNavLink href="/categories" onClick={() => setIsOpen(false)}>Categories</MobileNavLink>
-            <MobileNavLink href="/about" onClick={() => setIsOpen(false)}>About</MobileNavLink>
-            
-            <div className="pt-2 mt-2 border-t border-border">
-              {user ? (
-                <div className="space-y-1">
-                  <Link
-                    href="/admin"
-                    onClick={() => setIsOpen(false)}
-                    className="block w-full text-center px-4 py-2 rounded-md bg-primary text-text-inverse font-medium hover:opacity-90 transition-opacity"
-                  >
-                    Dashboard
-                  </Link>
-                  <form action="/auth/signout" method="post" className="w-full">
-                    <button
-                      type="submit"
-                      className="block w-full text-center px-4 py-2 rounded-md text-text-muted hover:text-text hover:bg-muted font-medium transition-colors"
-                    >
-                      Sign Out
-                    </button>
-                  </form>
-                </div>
-              ) : (
-                <Link
-                  href="/auth/login"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-4 py-2 rounded-md bg-muted text-text font-medium hover:bg-primary hover:text-text-inverse transition-colors"
-                >
-                  Sign In
-                </Link>
-              )}
-            </div>
-          </nav>
+      {/* Hamburger */}
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="md:hidden relative z-[10000] p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition"
+        aria-label="Toggle menu"
+      >
+        <div className="w-6 h-6 flex flex-col justify-center items-center">
+          <span
+            className={`block w-5 h-[2px] bg-current transition-all duration-300 ${
+              open ? "rotate-45 translate-y-[5px]" : "-translate-y-1"
+            }`}
+          />
+          <span
+            className={`block w-5 h-[2px] bg-current my-[3px] transition-all duration-300 ${
+              open ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-5 h-[2px] bg-current transition-all duration-300 ${
+              open ? "-rotate-45 -translate-y-[5px]" : "translate-y-1"
+            }`}
+          />
         </div>
-      </div>
+      </button>
+
+      {mounted &&
+        createPortal(
+          <div
+            className={`fixed inset-0 z-[9999] transition-opacity duration-300 ${
+              open
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
+            {/* Background */}
+            <div
+              onClick={closeMenu}
+              className="absolute inset-0 bg-slate-50/95 backdrop-blur-xl"
+            />
+
+            {/* Menu */}
+            <div
+              className={`relative flex flex-col h-full pt-28 px-8 pb-10 transition-all duration-500 ${
+                open
+                  ? "translate-y-0 opacity-100"
+                  : "-translate-y-10 opacity-0"
+              }`}
+            >
+              {/* X Close Button */}
+              <button
+                onClick={closeMenu}
+                aria-label="Close menu"
+                className="absolute top-6 right-6 p-2 rounded-lg text-slate-600 hover:bg-slate-200 transition"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Navigation */}
+              <nav className="flex flex-col gap-10 text-5xl font-bold text-slate-900">
+                <MenuLink href="/" index={0} open={open} close={closeMenu}>
+                  Home
+                </MenuLink>
+
+                <MenuLink
+                  href="/categories"
+                  index={1}
+                  open={open}
+                  close={closeMenu}
+                >
+                  Categories
+                </MenuLink>
+
+                <MenuLink href="/about" index={2} open={open} close={closeMenu}>
+                  About
+                </MenuLink>
+              </nav>
+
+              {/* Bottom Section */}
+              <div className="mt-auto pt-10 border-t border-slate-200">
+                {user ? (
+                  <div className="space-y-3">
+                    <Link
+                      href="/admin"
+                      onClick={closeMenu}
+                      className="block text-center py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+                    >
+                      Dashboard
+                    </Link>
+
+                    <form action="/auth/signout" method="post">
+                      <button className="w-full py-3 rounded-xl bg-slate-200 text-slate-800 hover:bg-slate-300 transition">
+                        Sign Out
+                      </button>
+                    </form>
+                  </div>
+                ) : (
+                  <Link
+                    href="/auth/login"
+                    onClick={closeMenu}
+                    className="block text-center py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition"
+                  >
+                    Sign In
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
 
-function MobileNavLink({ href, onClick, children }: { href: string; onClick: () => void; children: React.ReactNode }) {
+function MenuLink({
+  href,
+  children,
+  open,
+  index,
+  close,
+}: {
+  href: string;
+  children: React.ReactNode;
+  open: boolean;
+  index: number;
+  close: () => void;
+}) {
   return (
     <Link
       href={href}
-      onClick={onClick}
-      className="block px-4 py-2 rounded-md text-text-muted hover:text-text hover:bg-muted font-medium transition-colors"
+      onClick={close}
+      className={`transition-all duration-500 hover:text-blue-600 hover:translate-x-2 ${
+        open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      }`}
+      style={{
+        transitionDelay: `${index * 120}ms`,
+      }}
     >
       {children}
     </Link>
-  );
-}
-
-function MenuIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  );
-}
-
-function XIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-    </svg>
   );
 }
