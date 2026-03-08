@@ -14,9 +14,9 @@ export async function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">G</span>
+              <span className="text-primary-foreground font-bold text-lg">Z</span>
             </div>
-            <span className="text-xl font-bold hidden sm:block">General Blog</span>
+            <span className="text-xl font-bold hidden sm:block">Zentry Mix</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
