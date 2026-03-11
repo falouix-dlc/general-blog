@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    # Set deployment path (change 'username' to your cPanel username)
+    - export DEPLOYPATH=/home/username/public_html/
+    - export REPOPATH=/home/username/repositories/your-repo-name
+    
+    # Install dependencies and build
+    - cd $REPOPATH && npm install
+    - cd $REPOPATH && npm run build
+    
+    # Deploy built files (for static export)
+    # If using 'output: export' in next.config.js:
+    - /bin/cp -R $REPOPATH/out/* $DEPLOYPATH
+    
+    # OR for full Next.js app (if cPanel has Node.js support):
+    # - /bin/cp -R $REPOPATH/* $DEPLOYPATH
+    # - /bin/cp $REPOPATH/.next $DEPLOYPATH/.next
