@@ -63,7 +63,7 @@ export default function PrivacyPage() {
               <p>
                 You can request a copy of your data, correct inaccurate information, 
                 or delete your account and associated data at any time. 
-                Contact us at <a href="mailto:privacy@example.com" className="text-primary hover:underline">privacy@example.com</a>.
+                Contact us at <a href="mailto:faluix@faluix.com" className="text-primary hover:underline">faluix@faluix.com</a>.
               </p>
             </section>
 
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground mb-3">Contact</h2>
               <p>
                 Questions about this policy? Reach out at{' '}
-                <a href="mailto:privacy@example.com" className="text-primary hover:underline">privacy@example.com</a>.
+                <a href="mailto:falouix@falouix.com" className="text-primary hover:underline">falouix@falouix.com</a>.
               </p>
             </section>
           </div>

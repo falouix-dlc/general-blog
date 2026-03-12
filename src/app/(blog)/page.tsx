@@ -138,7 +138,6 @@ async function getArticles(
   const { data: articles, count, error } = await query.range(offset, offset + limit - 1);
 
   if (error) {
-    console.error('Error fetching articles:', error);
     return { articles: [], totalCount: 0, totalPages: 0 };
   }
 
@@ -158,7 +157,6 @@ async function getCategories(): Promise<Category[]> {
     .order('name');
 
   if (error) {
-    console.error('Error fetching categories:', error);
     return [];
   }
 
