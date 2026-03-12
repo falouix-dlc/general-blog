@@ -49,8 +49,8 @@ export default function AboutPage() {
             <h3>Contact</h3>
             <p>
               For questions, corrections, or proposals:{' '}
-              <a href="mailto:hello@example.com" className="text-foreground underline underline-offset-4">
-                hello@example.com
+              <a href="mailto:falouix@falouix.com" className="text-foreground underline underline-offset-4">
+                falouix@falouix.com
               </a>
             </p>
           </div>

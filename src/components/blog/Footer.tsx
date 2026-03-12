@@ -11,9 +11,9 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">G</span>
+                <span className="text-white font-bold text-lg">Z</span>
               </div>
-              <span className="text-xl font-bold text-white">General Blog</span>
+              <span className="text-xl font-bold text-white">Zentry Mix</span>
             </Link>
             <p className="text-gray-400 max-w-sm">
               Discover stories, thinking, and expertise from writers on any topic. 

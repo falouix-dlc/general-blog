@@ -50,29 +50,29 @@ export default function ContactPage() {
 
               <div className="space-y-4">
                 <a 
-                  href="mailto:hello@example.com"
+                  href="mailto:falouix@falouix.com"
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  hello@example.com
+                  falouix@falouix.com
                 </a>
                 <a 
-                  href="https://twitter.com/yourhandle"
+                  href="https://twitter.com/falouix"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Twitter className="w-5 h-5" />
-                  @yourhandle
+                  @falouix
                 </a>
                 <a 
-                  href="https://github.com/yourhandle"
+                  href="https://github.com/falouix-dlc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Github className="w-5 h-5" />
-                  github.com/yourhandle
+                  github.com/falouix-dlc
                 </a>
               </div>
 
