@@ -71,38 +71,6 @@ export function HeroSection({ article }: HeroSectionProps) {
             {article.excerpt || 'Read the full article to learn more...'}
           </p>
 
-          {/* Author & CTA */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="flex items-center gap-3">
-              {article.profiles?.avatar_url ? (
-                <Image
-                  src={article.profiles.avatar_url}
-                  alt={authorName}
-                  width={48}
-                  height={48}
-                  className="rounded-full border-2 border-white/20"
-                />
-              ) : (
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-lg font-bold border-2 border-white/20">
-                  {authorName.charAt(0).toUpperCase()}
-                </div>
-              )}
-              <div>
-                <p className="font-medium text-white">{authorName}</p>
-                <p className="text-sm text-gray-400">{formattedDate} • {article.view_count.toLocaleString()} views</p>
-              </div>
-            </div>
-
-            <Link
-              href={`/article/${article.slug}`}
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-gray-900 bg-white hover:bg-gray-100 transition-colors sm:ml-auto"
-            >
-              Read Article
-              <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </div>
     </section>

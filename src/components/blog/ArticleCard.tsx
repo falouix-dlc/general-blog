@@ -96,7 +96,7 @@ export function ArticleCard({ article, priority = false }: ArticleCardProps) {
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="flex items-center gap-2">
+         {/* <div className="flex items-center gap-2">
             {article.profiles?.avatar_url ? (
               <Image
                 src={article.profiles.avatar_url}
@@ -115,7 +115,7 @@ export function ArticleCard({ article, priority = false }: ArticleCardProps) {
               <span className="text-xs text-gray-500">{formattedDate}</span>
             </div>
           </div>
-
+*/}
           <div className="flex items-center gap-1 text-gray-400 text-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
