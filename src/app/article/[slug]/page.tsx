@@ -161,23 +161,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             <div className="flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                {author?.avatar_url ? (
-                  <Image
-                    src={author.avatar_url}
-                    alt={author.full_name || 'Author'}
-                    width={56}
-                    height={56}
-                    className="rounded-full object-cover ring-2 ring-background shadow-sm"
-                  />
-                ) : (
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold text-xl shadow-sm">
-                    {(author?.full_name || author?.username || 'A').charAt(0).toUpperCase()}
-                  </div>
-                )}
+               
                 <div className="flex flex-col">
-                  <span className="font-semibold text-foreground">
-                    {author?.full_name || author?.username || 'Anonymous'}
-                  </span>
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5" />
@@ -255,9 +240,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </div>
                 )}
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg mb-1">
-                    Written by {author.full_name || author.username}
-                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Author at General Blog sharing insights about {category?.name || 'technology, design, and development'}.
                   </p>
